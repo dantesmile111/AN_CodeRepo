@@ -21,14 +21,18 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite,Category = "Actor Attributes")
 	float Health;
 
+
+	UPROPERTY(EditAnywhere, Category = "Actor Attributes")
+	float HealthMax;
+	
+
 	void RegenerateStamina(float DeltaTime);
 protected:
 	virtual void BeginPlay() override;
 
 private:
 
-	UPROPERTY(EditAnywhere, Category = "Actor Attributes")
-	float HealthMax;
+	
 
 	UPROPERTY(EditAnywhere, Category = "Actor Attributes")
 	float DashPower;

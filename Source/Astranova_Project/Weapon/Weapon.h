@@ -20,7 +20,22 @@ public:
 	void DisableSphereCollision();
 
 
+
+	UFUNCTION(BlueprintCallable)
+	void SetWeaponCollision(ECollisionEnabled::Type CollisionEnabled);
+
+
+
 	TArray<AActor*> IgnoreActors;
+			
+	UFUNCTION(BlueprintCallable)
+	void SphereTrace(FHitResult& BoxHit);
+
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon Properties")
+	float Damage;
+
+
 protected:
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	UStaticMeshComponent* ItemMesh;
@@ -33,19 +48,32 @@ protected:
 	UFUNCTION()
 	virtual void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-	UFUNCTION()
-	void OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
+	//UFUNCTION()
+//	void OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
 	void ExecuetGetHit(FHitResult& BoxHit);
+			
+
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = TraceLocations, meta = (AllowPrivateAccess = "true"))
+	class USceneComponent* BoxTraceStart;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = TraceLocations)
+	USceneComponent* BoxTraceEnd;
+
+
 private:
-	bool ActorIsSameType(AActor* OtherActor);
+	//bool ActorIsSameType(AActor* OtherActor);
 
-	void BoxTrace(FHitResult& BoxHit);
+	
 
-	UPROPERTY(EditAnywhere, Category = "Weapon Properties")
-	float Damage;
 
-	FVector BoxTraceExtent = FVector(5.f);
+
+	
+
+	
+
+	float BoxTraceExtent = 15.f;
 
 	// Amount of Damage caused by a Weapon.
 	UPROPERTY(EditAnywhere, Category = "Weapon Properties")
@@ -59,16 +87,13 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	class UBoxComponent* WeaponBox;
 
-	UPROPERTY(VisibleAnywhere)
-	class USceneComponent* BoxTraceStart;
-
-	UPROPERTY(VisibleAnywhere)
-	USceneComponent* BoxTraceEnd;
+	
 
 public:
 	FORCEINLINE class UBoxComponent* GetWeaponBox() const { return WeaponBox; }
 	FORCEINLINE float GetDamage() const { return Damage; }
 
-	UFUNCTION(BlueprintImplementableEvent)
-    void HitEventOccur();
+	UFUNCTION(BlueprintImplementableEvent, Category = "MyCategory")
+	void HitEventOccur();
+	
 };

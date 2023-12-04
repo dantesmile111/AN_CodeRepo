@@ -24,6 +24,13 @@ public:
 	bool IsBackAttack;
 
 
+	  UPROPERTY(BlueprintReadWrite, Category = Stats)
+	  float Health;
+
+	  UPROPERTY(BlueprintReadWrite, Category = Stats)
+	  float HealthMax;
+
+
 protected:
 	virtual void BeginPlay() override;
 

@@ -68,8 +68,8 @@ AMyCharacter::AMyCharacter()
 	TargetingHeightOffset = 20.f;// -10
 	LockedOnActor = nullptr;
 
-	Health = 100.0f;
-	HealthMax = 100.0f;
+	//Health = Attributes->Health;
+	//HealthMax = Attributes->HealthMax;
 
 	MovementValue.X = 0.f;
 
@@ -94,6 +94,19 @@ void AMyCharacter::BeginPlay()
 	PlayerController = Cast<APlayerController>(GetController());
 
 	MainAnimInstance = Cast<UMyCharacterAnimInstance>(GetMesh()->GetAnimInstance());
+
+
+	//AttributesWidget = CreateWidget<UPlayerAttributesWidget>(GetWorld(),);
+
+
+	if (AttributesWidget)
+	{
+		//adding it to he viewport
+		AttributesWidget->AddToViewport();
+		AttributesWidget->SetHealthPercent(Attributes->Health / Attributes->HealthMax);
+	}
+
+
 
 	if (PlayerController)
 	{
@@ -276,10 +289,32 @@ void AMyCharacter::Jump()
 void AMyCharacter::Death()
 {
 
+
 	if (GEngine)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, FString::Printf(TEXT("Character Died")));
 	}
+
+
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	
+	if (AnimInstance && DeathMontage)
+	{
+
+	AnimInstance->Montage_Play(DeathMontage);
+
+	if (EquippedWeapon)
+	{
+	EquippedWeapon->SetLifeSpan(3.f);
+
+		}
+	}
+	
+	GetMesh()->SetCollisionProfileName(TEXT("Ragdoll2"));
+	GetMesh()->SetSimulatePhysics(true);
+	
+
+
 
 }
 
@@ -301,7 +336,12 @@ void AMyCharacter::EKey()
 	AWeapon* OverlappedWeapon = Cast<AWeapon>(OverlappingItem);
 	if (OverlappedWeapon)
 	{
-		OverlappedWeapon->AttachMeshToSocket(this->GetMesh(), FName("RighthandSocket"), this, this);
+		//OverlappedWeapon->AttachMeshToSocket(this->GetMesh(), FName("RighthandSocket"), this, GetInstigator());
+		FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
+		OverlappedWeapon->AttachToComponent(this->GetMesh(), TransformRules, FName("RighthandSocket"));
+		OverlappedWeapon->SetInstigator(this);
+		OverlappedWeapon->SetOwner(this);
+		OverlappedWeapon->DisableSphereCollision();
 		CharacterState = ECharacterState::ECS_Equipped;
 
 		bIsEquipped = true;
@@ -589,37 +629,146 @@ float AMyCharacter::TakeDamage(float DamageAmount, FDamageEvent const& DamageEve
 
 	ReceiveDamage(DamageAmount);
 
-	// if (AttributesWidget)
-	// {
+	 if (AttributesWidget)
+	 {
 
-	// 	AttributesWidget->SetHealthPercent(Health / HealthMax);
-	// }
+	 	AttributesWidget->SetHealthPercent(Attributes->Health / Attributes->HealthMax);
+	 }
 
 
-	// if (Health == 0.f)
-	// {
-	// 	Death();
+	 if (Attributes->Health == 0.f)
+	 {
+	 	//Death();
 
-	// }
+	 }
 	return DamageAmount;
 }
 
 void AMyCharacter::ReceiveDamage(float Damage)
 {
 
-	Health = FMath::Clamp(Health - Damage, 0.f, HealthMax);
+	Attributes->Health = FMath::Clamp(Attributes->Health - Damage, 0.f, Attributes->HealthMax);
 
 }
 
 
 
 void AMyCharacter::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
-{
-	Super::GetHit_Implementation(ImpactPoint, Hitter);
-
-	if (GEngine)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 2.f, FColor::Green, FString::Printf(TEXT("Player health:%f"), Attributes->Health));
+		//Super::GetHit_Implementation(ImpactPoint, Hitter);
+
+	if (EquippedWeapon)
+	{
+
+		//EquippedWeapon->SetWeaponCollision(ECollisionEnabled::NoCollision);
+
+	}
+
+
+		if (GetMesh()->GetAnimInstance()->Montage_IsPlaying(AttackMontage))
+		{
+			GetMesh()->GetAnimInstance()->Montage_Stop(0.2f, AttackMontage);
+
+		}
+		StopAttackMontage();
+
+		//debug messages 
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Char Health:%f"), Attributes->Health));
+		}
+
+
+
+		///////////////////// hit react from different directions implimentation
+
+		const FVector Forward = GetActorForwardVector();
+		const FVector ToHit = (ImpactPoint - GetActorLocation()).GetSafeNormal();
+
+		//Forward * ToHit = |Forward| |ToHit| * cos(Theta)
+		// |Forward| = 1, |Tohit|= 1, Since they are normalized So forward * ToHit = cos(theta)
+		const double CosTheta = FVector::DotProduct(Forward, ToHit);
+
+		//take the inverse cosine (arc-cosine) of cos (theta) to just get Angle Theta 
+
+		double Theta = FMath::Acos(CosTheta);
+		//convert from radians to degrees 
+		Theta = FMath::RadiansToDegrees(Theta);
+
+		//if cross product vector is pointing down then Theta = negative; 
+		const FVector CrossProduct = FVector::CrossProduct(Forward, ToHit);
+
+		if (CrossProduct.Z < 0)
+		{
+			Theta *= -1.f;
+		}
+		FName SectionName;
+		if (Theta >= -45.f && Theta < 45.f)
+		{
+			UE_LOG(LogTemp, Display, TEXT("front"));
+			SectionName = FName("FromFront");
+		}
+		else if (Theta >= -135.f && Theta < -45.f)
+		{
+			UE_LOG(LogTemp, Display, TEXT("left"));
+			SectionName = FName("FromLeft");
+		}
+		else if (Theta >= 45.f && Theta < 135.f)
+		{
+			UE_LOG(LogTemp, Display, TEXT("right"));
+			SectionName = FName("FromRight");
+		}
+		else if (Theta >= 135.f && Theta < -135.f)
+		{
+			UE_LOG(LogTemp, Display, TEXT("back"));
+			SectionName = FName("FromBack");
+		}
+
+		PlayHitReactMontage(SectionName);
+
+		UE_LOG(LogTemp, Error, TEXT("Theta: %f"), Theta);
+
+
+
+		// death of player 
+		//if (!Attributes->IsAlive())
+		//{
+		//	//Falling on ground after death
+	
+
+		//	//CapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	
+		//	SetLifeSpan(4.f);
+		//	bIsLockOn = false;
+		//	//EquippedWeapon->Destroy(true);
+		//}
+	
+
+
+
+
+}
+
+
+
+void AMyCharacter::PlayHitReactMontage(const FName& SectionName)
+{
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (AnimInstance)
+	{
+		AnimInstance->Montage_Play(HitReactMontage);
+		AnimInstance->Montage_JumpToSection(SectionName, HitReactMontage);
+	}
+}
+
+
+void AMyCharacter::StopAttackMontage()
+{
+
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (AnimInstance)
+	{
+		AnimInstance->Montage_Stop(0.1f, AttackMontage);
 	}
 }
 

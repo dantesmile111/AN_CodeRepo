@@ -25,7 +25,12 @@ public:
 
 	void ReceiveDamage(float Damage);
 
-	virtual void GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter) override;
+	UFUNCTION(BlueprintCallable)
+	void GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter);
+
+	void PlayHitReactMontage(const FName& SectionName);
+
+	void StopAttackMontage();
 	
 	// UFUNCTION(BlueprintCallable)
 	// virtual void HandleDamage(float DamageAmount) override;
@@ -41,7 +46,8 @@ public:
 	class UMyCharacterAnimInstance* MainAnimInstance;
 
 
-
+//	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = UI)
+	//TSubclassOf<UPlayerAttributesWidget> WidgetTemplate;
 	///////IMPORtant Booleans for checks
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Weapon)
@@ -74,7 +80,7 @@ protected:
 	virtual void BeginPlay() override;
 
 
-	
+	//virtual void GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter) override;
 
 
 
@@ -182,6 +188,8 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	APlayerController* PlayerController;
 
+	
+
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	class UPlayerAttributesWidget* AttributesWidget;
 
@@ -208,15 +216,11 @@ private:
 	class AWeapon* OverlappingItem;
 
    // IMPORTANT VARIABLES 
-	UPROPERTY(EditAnywhere, BlueprintReadwrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	float Health;
 
-	UPROPERTY(EditAnywhere, BlueprintReadwrite, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	float HealthMax;
 	// UFUNCTION()
 	// void ReceiveDamage(float Damage);
-
-	//UPROPERTY(VisibleAnywhere)
+	
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Equipments, meta = (AllowPrivateAccess = "true"))
 	//AWeapon* EquippedWeapon;
 
 	UPROPERTY(EditDefaultsOnly, Category = Montages)
@@ -227,6 +231,9 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = Montages)
 	UAnimMontage* DirectionalJumpMontage;
+
+	//UPROPERTY(EditDefaultsOnly, Category = Montages)
+	//UAnimMontage* DeathMontage;
 
 	UPROPERTY(EditDefaultsOnly, Category = Montages)
 	bool bCanRun = false;
@@ -250,15 +257,18 @@ public:
 
 	FORCEINLINE APlayerController* GetPlayerController() { return PlayerController; }
 
+	UFUNCTION(BlueprintCallable)
+	FORCEINLINE AWeapon* GetEquippedWeapon() { return EquippedWeapon; }
+
 	FORCEINLINE EActionState GetActionState() const { return ActionState; }
 	FORCEINLINE bool GetbCanRun() { return bCanRun; }
 	FORCEINLINE UCameraComponent* GetCameraView() { return CameraView; }
 	FORCEINLINE float GetCameraInterpSpeed() { return CameraInterpSpeed; }
 
-	UFUNCTION(BlueprintCallable)
-	FORCEINLINE float GetHealth() {return Health;}
-	UFUNCTION(BlueprintCallable)
-	FORCEINLINE float GetHealthMax() { return HealthMax; }
+	//UFUNCTION(BlueprintCallable)
+	//FORCEINLINE float GetHealth() {return (Attributes->Health);}
+	//UFUNCTION(BlueprintCallable)
+	//FORCEINLINE float GetHealthMax() { return Attributes->HealthMax); }
 	
 	
 };

@@ -39,6 +39,9 @@ AEnemy::AEnemy()
 
 	
 
+	Health = Attributes->Health;
+	HealthMax = Attributes->HealthMax;
+
 }
 
 void AEnemy::BeginPlay()
@@ -66,8 +69,8 @@ void AEnemy::BeginPlay()
 
 void AEnemy::HandleDamage(float DamageAmount)
 {
-	Super::HandleDamage(DamageAmount);
-
+	
+	Attributes->Health = FMath::Clamp(Attributes->Health - DamageAmount, 0.f, Attributes->HealthMax);
 
 }
 
@@ -97,7 +100,7 @@ void AEnemy::Tick(float DeltaTime)
 float AEnemy::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
 	HandleDamage(DamageAmount);
-	CombatTarget = EventInstigator->GetPawn();
+	//CombatTarget = EventInstigator->GetPawn();
 
 	
 	return DamageAmount;
@@ -108,7 +111,7 @@ void AEnemy::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
 	Super::GetHit_Implementation(ImpactPoint, Hitter);
 
 	
-	SetWeaponCollision(ECollisionEnabled::NoCollision);
+	//EquippedWeapon->SetWeaponCollision(ECollisionEnabled::NoCollision);
 	StopAttackMontage();
 
 	//debug messages 
@@ -142,33 +145,50 @@ void AEnemy::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
 		Theta *= -1.f;	
 	}
 	FName SectionName;
+
+	
+
 	if (Theta >= -45.f && Theta < 45.f)
 	{
 		UE_LOG(LogTemp, Display, TEXT("front"));
-		SectionName = FName("Front");
+		SectionName = FName("FromFront");
 	}
 	else if (Theta >= -135.f && Theta < -45.f)
 	{
 		UE_LOG(LogTemp, Display, TEXT("left"));
-		SectionName = FName("FrontLeft");
+		SectionName = FName("FromLeft");
 	}
 	else if (Theta >= 45.f && Theta < 135.f)
 	{	
 		UE_LOG(LogTemp, Display, TEXT("right"));
-		SectionName = FName("FrontRight");
+		SectionName = FName("FromRight");
 	}
 	PlayHitReactMontage(SectionName);
 	UE_LOG(LogTemp, Error, TEXT("Theta: %f"), Theta);
-	// death of enemy 
-	if (!Attributes->IsAlive())
+	if (GEngine)
 	{
+		
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("My Name: %s"), *SectionName.ToString()));
+	}
+
+
+	// death of enemy 
+	if (Attributes->Health <= 0.f)
+	{
+		if (GEngine)
+		{
+
+			GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Purple, FString::Printf(TEXT("Deaths")));
+		}
+		
 		//Falling on ground after death
 		GetMesh()->SetCollisionProfileName(TEXT("Ragdoll2"));
 		
 		//CapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 		GetMesh()->SetSimulatePhysics(true);
 		SetLifeSpan(4.f);
-		Player->bIsLockOn = false;
+		Player->ToggleLockOn();
+		
 		//EquippedWeapon->Destroy(true);
 	}
 }

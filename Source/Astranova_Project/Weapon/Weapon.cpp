@@ -7,6 +7,7 @@
 #include "Kismet/GamePlayStatics.h"
 #include "Components/SphereComponent.h"
 #include "Astranova_Project/Character/MyCharacter.h"
+#include  "Astranova_Project\Enemy\Enemy.h"
 
 AWeapon::AWeapon()
 {
@@ -34,17 +35,21 @@ AWeapon::AWeapon()
 
 	BoxTraceEnd = CreateDefaultSubobject<USceneComponent>(FName("Box Trace End"));
 	BoxTraceEnd->SetupAttachment(GetRootComponent());
+
+
+	SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AWeapon::OnSphereOverlap);
+	SphereComponent->OnComponentEndOverlap.AddDynamic(this, &AWeapon::OnSphereEndOverlap);
+	
+	WeaponBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 void AWeapon::BeginPlay()
 {
 	Super::BeginPlay();
-	SphereComponent->OnComponentBeginOverlap.AddDynamic(this, &AWeapon::OnSphereOverlap);
-	SphereComponent->OnComponentEndOverlap.AddDynamic(this, &AWeapon::OnSphereEndOverlap);
-	WeaponBox->OnComponentBeginOverlap.AddDynamic(this, &AWeapon::OnBoxOverlap);
-
+	
+	//WeaponBox->OnComponentBeginOverlap.AddDynamic(this, &AWeapon::OnBoxOverlap);
 	// When Game starts 
-	WeaponBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	
 }
 
 void AWeapon::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
@@ -65,34 +70,7 @@ void AWeapon::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActo
 	}
 }
 
-void AWeapon::OnBoxOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	if (GetOwner()->ActorHasTag(FName("Enemy")) && OtherActor->ActorHasTag(FName("Enemy")) ||
-		GetOwner()->ActorHasTag(FName("Player")) && OtherActor->ActorHasTag(FName("Player")))
-	{
-		return;
-	}
-	FHitResult BoxHit;
-	BoxTrace(BoxHit);
-	UE_LOG(LogTemp, Display, TEXT("code works"));
-	if (BoxHit.GetActor())
-	{
-		if (GetOwner()->ActorHasTag(FName("Enemy")) && OtherActor->ActorHasTag(FName("Enemy")) ||
-			GetOwner()->ActorHasTag(FName("Player")) && OtherActor->ActorHasTag(FName("Player")))
-		{
-			return;
-		}
-		DrawDebugSphere(GetWorld(), BoxHit.ImpactPoint, 12.f, 5, FColor::Blue, false, 5.f);
 
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Blue, FString::Printf(TEXT("DamageActor:%s"), *BoxHit.GetActor()->GetName()));
-		}
-		HitEventOccur();
-		UGameplayStatics::ApplyDamage(BoxHit.GetActor(), Damage, GetInstigator()->GetController(), this, UDamageType::StaticClass());
-		ExecuetGetHit(BoxHit);
-	}
-}
 
 void AWeapon::ExecuetGetHit(FHitResult& BoxHit)
 {
@@ -103,16 +81,13 @@ void AWeapon::ExecuetGetHit(FHitResult& BoxHit)
 	}
 }
 
-bool AWeapon::ActorIsSameType(AActor* OtherActor)
-{
-	return  GetOwner()->ActorHasTag(FName("Enemy")) && OtherActor->ActorHasTag(FName("Enemy")) ||
-		GetOwner()->ActorHasTag(FName("Player")) && OtherActor->ActorHasTag(FName("Player"));
-}
 
-void AWeapon::BoxTrace(FHitResult& BoxHit)
+void AWeapon::SphereTrace(FHitResult& BoxHit)
 {
 	const FVector Start = BoxTraceStart->GetComponentLocation();
 	const FVector End = BoxTraceEnd->GetComponentLocation();
+
+	//FHitResult BoxHit;
 
 	TArray <AActor*> ActorToIgnore;
 	ActorToIgnore.Add(this);
@@ -122,20 +97,53 @@ void AWeapon::BoxTrace(FHitResult& BoxHit)
 		ActorToIgnore.AddUnique(Actor);
 	}
 
-	UKismetSystemLibrary::BoxTraceSingle(this,
-		Start,
-		End,
-		BoxTraceExtent,
-		BoxTraceStart->GetComponentRotation(),
-		ETraceTypeQuery::TraceTypeQuery1,
-		false,
-		ActorToIgnore, bShowBoxDebug ? EDrawDebugTrace::ForDuration : EDrawDebugTrace::None,
-		BoxHit,
-		true);
 
-	IgnoreActors.AddUnique(BoxHit.GetActor());
+	UKismetSystemLibrary::SphereTraceSingle
+	(this,
+			Start,
+			End,
+		BoxTraceExtent,	
+		UEngineTypes::ConvertToTraceType(ECC_Visibility),
+		true,
+		ActorToIgnore,
+		  EDrawDebugTrace::None, BoxHit,true, FLinearColor::Green
+		);
+
+	//IgnoreActors.AddUnique(BoxHit.GetActor());
 	IgnoreActors.AddUnique(GetOwner());
+
+
+	AEnemy* Enemy = Cast<AEnemy>(BoxHit.GetActor());
+
+	if(BoxHit.GetActor())
+	{
+
+		//DrawDebugSphere(GetWorld(), BoxHit.ImpactPoint, 12.f, 5, FColor::Blue, false, 5.f);
+
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(1, 5.f, FColor::Blue, FString::Printf(TEXT("DamageActor:%s"), *BoxHit.GetActor()->GetName()));
+		}
+
+		HitEventOccur();
+		//UGameplayStatics::ApplyDamage(BoxHit.GetActor(), Damage, GetInstigator()->GetController(), GetOwner(), UDamageType::StaticClass());
+		ExecuetGetHit(BoxHit);
+	}
+
+
 }
+
+
+void AWeapon::SetWeaponCollision(ECollisionEnabled::Type CollisionEnabled)
+{
+	
+	
+	WeaponBox->SetCollisionEnabled(CollisionEnabled);
+	IgnoreActors.Empty();
+	
+}
+
+
 
 void AWeapon::DisableSphereCollsion()
 {

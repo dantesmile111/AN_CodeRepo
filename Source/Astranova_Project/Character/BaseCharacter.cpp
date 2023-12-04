@@ -40,20 +40,20 @@ void ABaseCharacter::HandleDamage(float DamageAmount)
 
 void ABaseCharacter::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
 {
-	if (Attributes && Attributes->IsAlive() && Hitter)
-	{
-		//DirectionalHitReact(Hitter->GetActorLocation());
-		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-		if (AnimInstance)
-		{
-			AnimInstance->Montage_Play(HitReactMontage);
-		}
-	}
-	else
-	{
-		Die();
-	}
-	SetWeaponCollision(ECollisionEnabled::NoCollision);
+	//if (Attributes && Attributes->IsAlive() && Hitter)
+	//{
+	//	//DirectionalHitReact(Hitter->GetActorLocation());
+	//	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	//	if (AnimInstance)
+	//	{
+	//		AnimInstance->Montage_Play(HitReactMontage);
+	//	}
+	//}
+	//else
+	//{
+	//	Die();
+	//}
+	//EquippedWeapon->SetWeaponCollision(ECollisionEnabled::NoCollision);
 	PlayHitSound(ImpactPoint);
 	SpawnHitParticles(ImpactPoint);
 }
@@ -125,15 +125,6 @@ void ABaseCharacter::SpawnHitParticles(const FVector& ImpactPoint)
 void ABaseCharacter::AttackEnd()
 {
 
-}
-
-void ABaseCharacter::SetWeaponCollision(ECollisionEnabled::Type CollisionEnabled)
-{
-	if (EquippedWeapon && EquippedWeapon->GetWeaponBox())
-	{
-		EquippedWeapon->GetWeaponBox()->SetCollisionEnabled(CollisionEnabled);
-		EquippedWeapon->IgnoreActors.Empty();
-	}
 }
 
 // void ABaseCharacter::PlayHitReactMontage(const FName& SectionName)

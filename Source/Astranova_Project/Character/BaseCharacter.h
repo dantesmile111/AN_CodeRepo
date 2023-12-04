@@ -56,14 +56,14 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	virtual	void AttackEnd();
 
-	UFUNCTION(BlueprintCallable)
-	void SetWeaponCollision(ECollisionEnabled::Type CollisionEnabled);
+	
+	
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	class AWeapon* EquippedWeapon;
 
 	/** Montages */
-	void PlayHitReactMontage(const FName& SectionName);
+	//void PlayHitReactMontage(const FName& SectionName);
 	/*virtual int32 PlayAttackMontage();
 	virtual int32 PlayDeathMontage();
 	void StopAttackMontage();
