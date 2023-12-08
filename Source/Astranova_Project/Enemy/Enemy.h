@@ -24,11 +24,11 @@ public:
 	bool IsBackAttack;
 
 
-	  UPROPERTY(BlueprintReadWrite, Category = Stats)
+	/*  UPROPERTY(BlueprintReadWrite, Category = Stats)
 	  float Health;
 
 	  UPROPERTY(BlueprintReadWrite, Category = Stats)
-	  float HealthMax;
+	  float HealthMax;*/
 
 
 protected:

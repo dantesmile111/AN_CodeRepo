@@ -43,7 +43,7 @@ public:
 	// CustomEvent
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Animation)
-	class UMyCharacterAnimInstance* MainAnimInstance;
+	class UMyCharacterAnimInstance* AnimInstance;
 
 
 //	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = UI)
@@ -72,6 +72,16 @@ public:
 	bool bIsAttacking;
 
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LockTarget)
+	float RightInput;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = LockTarget)
+	float ForwardInput;
+
+
+
+	
+
 	void ToggleLockOn();
 	/*</SetTarget>*/
 
@@ -86,6 +96,8 @@ protected:
 
 	// Player Movement EnhancedInput;
 	void Move(const FInputActionValue& Value);
+
+	void StopMoving();
 	void Look(const FInputActionValue& Value);
 	virtual void Jump() override;
 
@@ -94,6 +106,7 @@ protected:
 	UFUNCTION(BlueprintCallable)
 
 	void Dodge();
+	void Dash();
 	void EKey();
 	void ShiftKeyDown();
 	void ShiftKeyUp();
@@ -228,6 +241,9 @@ private:
 
 	UPROPERTY(EditDefaultsOnly, Category = Montages)
 	UAnimMontage* DodgeMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = Montages)
+	UAnimMontage* DashMontage;
 
 	UPROPERTY(EditDefaultsOnly, Category = Montages)
 	UAnimMontage* DirectionalJumpMontage;

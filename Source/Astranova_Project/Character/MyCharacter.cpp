@@ -73,8 +73,8 @@ AMyCharacter::AMyCharacter()
 
 	MovementValue.X = 0.f;
 
-	 
-
+	ForwardInput = 0.f;
+	RightInput = 0.f;
 
 }
 
@@ -93,8 +93,9 @@ void AMyCharacter::BeginPlay()
 
 	PlayerController = Cast<APlayerController>(GetController());
 
-	MainAnimInstance = Cast<UMyCharacterAnimInstance>(GetMesh()->GetAnimInstance());
+	AnimInstance = Cast<UMyCharacterAnimInstance>(GetMesh()->GetAnimInstance());
 
+	
 
 	//AttributesWidget = CreateWidget<UPlayerAttributesWidget>(GetWorld(),);
 
@@ -219,6 +220,36 @@ void AMyCharacter::Move(const FInputActionValue& Value)
 	AddMovementInput(MoveRight, MoveDirection.X);
 
 	MovementValue.X = MoveDirection.X;
+
+	RightInput = MoveDirection.X;
+	ForwardInput = MoveDirection.Y;
+
+	if (ForwardInput != 0.f)
+	{
+		RightInput = 0.f;
+	}
+
+	if (RightInput != 0.f)
+	{
+		ForwardInput = 0.f;
+	}
+	
+	GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Green, FString::Printf(TEXT("RightInput %f"), RightInput));
+	GEngine->AddOnScreenDebugMessage(2, 3.f, FColor::Green, FString::Printf(TEXT("ForwardInput %f"), ForwardInput));
+}
+
+
+
+
+
+
+
+void AMyCharacter::StopMoving()
+{
+	RightInput = 0.f;
+	ForwardInput = 0.f;
+
+
 }
 
 void AMyCharacter::Look(const FInputActionValue& Value)
@@ -241,8 +272,8 @@ void AMyCharacter::Jump()
 	{
 		FName SectionName = ""; 
 
-		MainAnimInstance->Montage_Play(DirectionalJumpMontage);
-		float Angle = MainAnimInstance->Angle + 180.f;
+		AnimInstance->Montage_Play(DirectionalJumpMontage);
+		float Angle = AnimInstance->Angle + 180.f;
 
 		if (GEngine)
 		{
@@ -253,7 +284,7 @@ void AMyCharacter::Jump()
 		{
 			SectionName = "Jump_B";
 
-			MainAnimInstance->Montage_JumpToSection(SectionName);
+			AnimInstance->Montage_JumpToSection(SectionName);
 		}
 
 		else if (FMath::Abs(Angle - 90.f) < 15.f)
@@ -261,7 +292,7 @@ void AMyCharacter::Jump()
 
 			SectionName = "Jump_L";
 			
-			MainAnimInstance->Montage_JumpToSection(SectionName);
+			AnimInstance->Montage_JumpToSection(SectionName);
 		}
 
 		else if (FMath::Abs(Angle - 180.f) < 15.f)
@@ -269,7 +300,7 @@ void AMyCharacter::Jump()
 
 
 			SectionName = "Jump_F";
-			MainAnimInstance->Montage_JumpToSection(SectionName);
+			AnimInstance->Montage_JumpToSection(SectionName);
 		}
 
 		else if ( FMath::Abs(Angle - 270.f) < 15.f )
@@ -277,7 +308,7 @@ void AMyCharacter::Jump()
 
 			SectionName = "Jump_R";
 			
-			MainAnimInstance->Montage_JumpToSection(SectionName);
+			AnimInstance->Montage_JumpToSection(SectionName);
 		}
 
 		
@@ -296,7 +327,7 @@ void AMyCharacter::Death()
 	}
 
 
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	
 	
 	if (AnimInstance && DeathMontage)
 	{
@@ -322,13 +353,97 @@ void AMyCharacter::Death()
 
 void AMyCharacter::Dodge()
 {
-	if (ActionState != EActionState::EAS_Unoccupied) return;
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	
+	
 	if (AnimInstance && DodgeMontage)
 	{
 		AnimInstance->Montage_Play(DodgeMontage);
 		ActionState = EActionState::EAS_Dodge;
 	}
+}
+
+
+
+
+void AMyCharacter::Dash()
+{
+	
+	if ( DashMontage && !GetCharacterMovement()->bOrientRotationToMovement)
+	{
+		//ActionState = EActionState::EAS_Dodge;
+
+		FName SectionName;
+		AnimInstance->Montage_Play(DashMontage);
+
+		if (RightInput >= 0.1f)
+		{
+			 //right
+			SectionName = FName("Dash_R");
+			GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Green, SectionName.ToString());
+
+			AnimInstance->Montage_JumpToSection(SectionName, DashMontage);
+
+
+		}
+
+		else if (RightInput <= -0.1f)
+		{
+			  // Left
+			SectionName = FName("Dash_L");
+			GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Green, SectionName.ToString());
+
+			AnimInstance->Montage_JumpToSection(SectionName, DashMontage);
+
+		}
+
+		 else if (ForwardInput >= 0.1f)
+		{
+		   // Forward 
+			SectionName = FName("Dash_F");
+			GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Green, SectionName.ToString());
+
+			AnimInstance->Montage_JumpToSection(SectionName, DashMontage);
+		}
+
+		
+		else if (ForwardInput <= - 0.1f)
+		{
+			// Backward
+			SectionName = FName("Dash_B");
+			GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Green, SectionName.ToString());
+
+			AnimInstance->Montage_JumpToSection(SectionName, DashMontage);
+
+
+		}
+
+
+		else 
+		{
+			// Forward 
+			SectionName = FName("Dash_F");
+			GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Green, SectionName.ToString());
+
+			AnimInstance->Montage_JumpToSection(SectionName, DashMontage);
+		}
+
+	
+	}
+
+	else
+	{
+
+		FName SectionName;
+		AnimInstance->Montage_Play(DashMontage);
+		SectionName = FName("Dash_F");
+		GEngine->AddOnScreenDebugMessage(1, 3.f, FColor::Green, SectionName.ToString());
+
+		AnimInstance->Montage_JumpToSection(SectionName, DashMontage);
+
+	}
+	
+
+
 }
 
 void AMyCharacter::EKey()
@@ -424,7 +539,7 @@ void AMyCharacter::PrimaryWeaponKey()
 
 void AMyCharacter::PlayEquipMontage(FName SectionName)
 {
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	//UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 
 	
 	if (AnimInstance && EquipMontage)
@@ -494,7 +609,7 @@ void AMyCharacter::SwitchHands()
 
 void AMyCharacter::PlayAttackMontage(UAnimMontage* MontageName)
 {
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	//UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	if (AnimInstance && MontageName)
 	{
 		AnimInstance->Montage_Play(MontageName);
@@ -550,7 +665,7 @@ void AMyCharacter::Tick(float DeltaTime)
 	if (Attributes)
 	{
 		Attributes->RegenerateStamina(DeltaTime);
-		//UE_LOG(LogTemp, Warning, TEXT("DashPower: %f"), Attributes->GetStamina())
+		//UE_LOG(LogTemp, Warning, TEXT("DashPower: %f"), Attributes->GetStamina())	;
 	}
 
 	if (bIsLockOn)
@@ -579,6 +694,8 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMyCharacter::Move);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &AMyCharacter::StopMoving);
+
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMyCharacter::Look);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Ongoing, this, &AMyCharacter::Jump);
 		
@@ -588,11 +705,12 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 		EnhancedInputComponent->BindAction(CrouchAction, ETriggerEvent::Triggered, this, &AMyCharacter::CrouchToggle);
 
 		EnhancedInputComponent->BindAction(EKeyAction, ETriggerEvent::Triggered, this, &AMyCharacter::EKey);
+		EnhancedInputComponent->BindAction(DashAbilityAction, ETriggerEvent::Triggered, this, &AMyCharacter::Dash);
 
 		EnhancedInputComponent->BindAction(PrimaryWEaponKeyAction, ETriggerEvent::Triggered, this, &AMyCharacter::PrimaryWeaponKey);
 		//EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &AMyCharacter::Attack);
 		
-		EnhancedInputComponent->BindAction(TargetLockOn, ETriggerEvent::Triggered, this, &AMyCharacter::ToggleLockOn);
+		//EnhancedInputComponent->BindAction(TargetLockOn, ETriggerEvent::Triggered, this, &AMyCharacter::ToggleLockOn);
 
 
 		//EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &AMyCharacter::Dodge);
@@ -753,7 +871,7 @@ void AMyCharacter::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hit
 
 void AMyCharacter::PlayHitReactMontage(const FName& SectionName)
 {
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	//UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	if (AnimInstance)
 	{
 		AnimInstance->Montage_Play(HitReactMontage);
@@ -765,7 +883,7 @@ void AMyCharacter::PlayHitReactMontage(const FName& SectionName)
 void AMyCharacter::StopAttackMontage()
 {
 
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	//UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	if (AnimInstance)
 	{
 		AnimInstance->Montage_Stop(0.1f, AttackMontage);

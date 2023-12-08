@@ -90,7 +90,11 @@ void AWeapon::SphereTrace(FHitResult& BoxHit)
 	//FHitResult BoxHit;
 
 	TArray <AActor*> ActorToIgnore;
+
+
 	ActorToIgnore.Add(this);
+	//IgnoreActors.AddUnique(BoxHit.GetActor());
+	ActorToIgnore.AddUnique(GetOwner());
 
 	for (AActor* Actor : IgnoreActors)
 	{
@@ -109,8 +113,7 @@ void AWeapon::SphereTrace(FHitResult& BoxHit)
 		  EDrawDebugTrace::None, BoxHit,true, FLinearColor::Green
 		);
 
-	//IgnoreActors.AddUnique(BoxHit.GetActor());
-	IgnoreActors.AddUnique(GetOwner());
+	
 
 
 	AEnemy* Enemy = Cast<AEnemy>(BoxHit.GetActor());

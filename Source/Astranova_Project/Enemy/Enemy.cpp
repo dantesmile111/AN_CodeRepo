@@ -39,8 +39,7 @@ AEnemy::AEnemy()
 
 	
 
-	Health = Attributes->Health;
-	HealthMax = Attributes->HealthMax;
+
 
 }
 
@@ -173,24 +172,24 @@ void AEnemy::GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter)
 
 
 	// death of enemy 
-	if (Attributes->Health <= 0.f)
-	{
-		if (GEngine)
-		{
+	//if (Attributes->Health <= 0.f)
+	//{
+	//	if (GEngine)
+	//	{
 
-			GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Purple, FString::Printf(TEXT("Deaths")));
-		}
-		
-		//Falling on ground after death
-		GetMesh()->SetCollisionProfileName(TEXT("Ragdoll2"));
-		
-		//CapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-		GetMesh()->SetSimulatePhysics(true);
-		SetLifeSpan(4.f);
-		Player->ToggleLockOn();
-		
-		//EquippedWeapon->Destroy(true);
-	}
+	//		GEngine->AddOnScreenDebugMessage(-1, 100.f, FColor::Purple, FString::Printf(TEXT("Deaths")));
+	//	}
+	//	
+	//	//Falling on ground after death
+	//	GetMesh()->SetCollisionProfileName(TEXT("Ragdoll2"));
+	//	
+	//	CapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	//	GetMesh()->SetSimulatePhysics(true);
+	//	SetLifeSpan(4.f);
+		//Player->ToggleLockOn();
+	//	
+	//  //EquippedWeapon->Destroy(true);
+	//}
 }
 
 void AEnemy::StopAttackMontage()
@@ -220,7 +219,7 @@ void AEnemy::GiveDamage(AActor* DamagedActor, float DamageAmount, AController* E
 void AEnemy::PlayHitReactMontage(const FName& SectionName)
 {
 	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-	if (AnimInstance)
+	if (AnimInstance && Attributes->Health > 0.f)
 	{
 		AnimInstance->Montage_Play(HitReactMontage);
 		AnimInstance->Montage_JumpToSection(SectionName, HitReactMontage);
