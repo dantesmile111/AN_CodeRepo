@@ -238,6 +238,8 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = Montages)
 	bool bCanRun = false;
 
+
+
 	UPROPERTY(EditAnywhere, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	float CameraInterpSpeed;
 

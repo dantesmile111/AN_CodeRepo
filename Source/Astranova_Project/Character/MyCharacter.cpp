@@ -347,6 +347,8 @@ void AMyCharacter::EKey()
 		bIsEquipped = true;
 		OverlappingItem = nullptr;
 		EquippedWeapon = OverlappedWeapon;
+
+		
 	}
 
 }
