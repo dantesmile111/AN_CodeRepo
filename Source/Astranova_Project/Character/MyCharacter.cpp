@@ -51,7 +51,7 @@ AMyCharacter::AMyCharacter()
 	CameraView = CreateDefaultSubobject<UCameraComponent>(FName("CameraView"));
 	CameraView->SetupAttachment(CameraBoom);
 	//doesnt 
-	CameraView->bUsePawnControlRotation = false;
+	//CameraView->bUsePawnControlRotation = false;
 
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
@@ -336,7 +336,6 @@ void AMyCharacter::EKey()
 	AWeapon* OverlappedWeapon = Cast<AWeapon>(OverlappingItem);
 	if (OverlappedWeapon)
 	{
-		//OverlappedWeapon->AttachMeshToSocket(this->GetMesh(), FName("RighthandSocket"), this, GetInstigator());
 		FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
 		OverlappedWeapon->AttachToComponent(this->GetMesh(), TransformRules, FName("RighthandSocket"));
 		OverlappedWeapon->SetInstigator(this);
