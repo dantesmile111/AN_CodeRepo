@@ -102,8 +102,8 @@ void AMyCharacter::BeginPlay()
 	if (AttributesWidget)
 	{
 		//adding it to he viewport
-		AttributesWidget->AddToViewport();
-		AttributesWidget->SetHealthPercent(Attributes->Health / Attributes->HealthMax);
+		//AttributesWidget->AddToViewport();
+		//AttributesWidget->SetHealthPercent(Attributes->Health / Attributes->HealthMax);
 	}
 
 

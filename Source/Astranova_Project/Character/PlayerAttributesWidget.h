@@ -16,6 +16,7 @@ class ASTRANOVA_PROJECT_API UPlayerAttributesWidget : public UUserWidget
 
 
 public:
+	UFUNCTION(BlueprintCallable)
 	void SetHealthPercent(float Percent);
 
 

@@ -22,7 +22,7 @@ public:
 	float Health;
 
 
-	UPROPERTY(EditAnywhere, Category = "Actor Attributes")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actor Attributes")
 	float HealthMax;
 	
 
