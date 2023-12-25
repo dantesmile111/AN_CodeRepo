@@ -593,7 +593,7 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 		EnhancedInputComponent->BindAction(PrimaryWEaponKeyAction, ETriggerEvent::Triggered, this, &AMyCharacter::PrimaryWeaponKey);
 		//EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &AMyCharacter::Attack);
 		
-		EnhancedInputComponent->BindAction(TargetLockOn, ETriggerEvent::Triggered, this, &AMyCharacter::ToggleLockOn);
+		//EnhancedInputComponent->BindAction(TargetLockOn, ETriggerEvent::Triggered, this, &AMyCharacter::ToggleLockOn);
 
 
 		//EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &AMyCharacter::Dodge);
