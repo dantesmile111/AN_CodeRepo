@@ -347,6 +347,8 @@ void AMyCharacter::EKey()
 		OverlappingItem = nullptr;
 		EquippedWeapon = OverlappedWeapon;
 
+		CombatMode();
+
 		
 	}
 
@@ -419,6 +421,7 @@ void AMyCharacter::PrimaryWeaponKey()
 
 	}
 	
+	CombatMode();
 
 }
 
@@ -593,7 +596,7 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 		EnhancedInputComponent->BindAction(PrimaryWEaponKeyAction, ETriggerEvent::Triggered, this, &AMyCharacter::PrimaryWeaponKey);
 		//EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &AMyCharacter::Attack);
 		
-		EnhancedInputComponent->BindAction(TargetLockOn, ETriggerEvent::Triggered, this, &AMyCharacter::ToggleLockOn);
+		//EnhancedInputComponent->BindAction(TargetLockOn, ETriggerEvent::Triggered, this, &AMyCharacter::ToggleLockOn);
 
 
 		//EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &AMyCharacter::Dodge);
@@ -649,6 +652,24 @@ void AMyCharacter::ReceiveDamage(float Damage)
 {
 
 	Attributes->Health = FMath::Clamp(Attributes->Health - Damage, 0.f, Attributes->HealthMax);
+
+}
+
+void AMyCharacter::CombatMode()
+{
+	if (bIsEquipped)
+	{
+		GetCharacterMovement()->bOrientRotationToMovement = true;
+		CameraView->SetupAttachment(CombatSpringCameraBoom);
+		CombatSpringCameraBoom->TargetArmLength = 550.f;
+
+	}
+
+	if (!bIsEquipped)
+	{
+		CameraView->SetupAttachment(CameraBoom);
+		GetCharacterMovement()->bOrientRotationToMovement = false;
+	}
 
 }
 

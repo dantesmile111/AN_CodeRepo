@@ -26,6 +26,9 @@ public:
 	void ReceiveDamage(float Damage);
 
 	UFUNCTION(BlueprintCallable)
+	void CombatMode();
+
+	UFUNCTION(BlueprintCallable)
 	void GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter);
 
 	void PlayHitReactMontage(const FName& SectionName);
