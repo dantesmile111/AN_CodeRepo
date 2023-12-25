@@ -51,7 +51,7 @@ AMyCharacter::AMyCharacter()
 	CameraView = CreateDefaultSubobject<UCameraComponent>(FName("CameraView"));
 	CameraView->SetupAttachment(CameraBoom);
 	//doesnt 
-	CameraView->bUsePawnControlRotation = false;
+	//CameraView->bUsePawnControlRotation = false;
 
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
@@ -102,8 +102,8 @@ void AMyCharacter::BeginPlay()
 	if (AttributesWidget)
 	{
 		//adding it to he viewport
-		AttributesWidget->AddToViewport();
-		AttributesWidget->SetHealthPercent(Attributes->Health / Attributes->HealthMax);
+		//AttributesWidget->AddToViewport();
+		//AttributesWidget->SetHealthPercent(Attributes->Health / Attributes->HealthMax);
 	}
 
 
@@ -336,7 +336,6 @@ void AMyCharacter::EKey()
 	AWeapon* OverlappedWeapon = Cast<AWeapon>(OverlappingItem);
 	if (OverlappedWeapon)
 	{
-		//OverlappedWeapon->AttachMeshToSocket(this->GetMesh(), FName("RighthandSocket"), this, GetInstigator());
 		FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
 		OverlappedWeapon->AttachToComponent(this->GetMesh(), TransformRules, FName("RighthandSocket"));
 		OverlappedWeapon->SetInstigator(this);
@@ -594,7 +593,7 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 		EnhancedInputComponent->BindAction(PrimaryWEaponKeyAction, ETriggerEvent::Triggered, this, &AMyCharacter::PrimaryWeaponKey);
 		//EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Triggered, this, &AMyCharacter::Attack);
 		
-		EnhancedInputComponent->BindAction(TargetLockOn, ETriggerEvent::Triggered, this, &AMyCharacter::ToggleLockOn);
+		//EnhancedInputComponent->BindAction(TargetLockOn, ETriggerEvent::Triggered, this, &AMyCharacter::ToggleLockOn);
 
 
 		//EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Triggered, this, &AMyCharacter::Dodge);
