@@ -75,6 +75,12 @@ public:
 	bool bIsAttacking;
 
 
+	UPROPERTY(BlueprintReadOnly, Category = Montages)
+	bool bTurnRight;
+
+	UPROPERTY(BlueprintReadOnly, Category = Montages)
+	bool bTurnLeft;
+
 	void ToggleLockOn();
 	/*</SetTarget>*/
 
@@ -89,6 +95,7 @@ protected:
 
 	// Player Movement EnhancedInput;
 	void Move(const FInputActionValue& Value);
+	void Stop(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 	virtual void Jump() override;
 
@@ -241,7 +248,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = Montages)
 	bool bCanRun = false;
 
-
+	
 
 	UPROPERTY(EditAnywhere, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	float CameraInterpSpeed;

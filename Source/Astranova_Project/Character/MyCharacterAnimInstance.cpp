@@ -13,11 +13,12 @@
 
 UMyCharacterAnimInstance::UMyCharacterAnimInstance() :
 	GroundSpeed(0.f),
-	MovementOffset(0.f),
-	CharacterYaw(0.f),
-	CharacterYawLastFrame(0.f),
-	RootYawOffset(0.f)
+	MovementOffset(0.f)
+	
 {
+
+
+
 }
 
 void UMyCharacterAnimInstance::NativeInitializeAnimation()
@@ -49,6 +50,8 @@ void UMyCharacterAnimInstance::NativeUpdateAnimation(float DeltaTime)
 		bIsCrouched = MyCharacter->bIsCrouched;
 		bIsEquipped = MyCharacter->bIsEquipped;
 		bIsAttacking = MyCharacter->bIsAttacking;
+		bTurnLeft = MyCharacter->bTurnLeft;
+		bTurnRight = MyCharacter->bTurnRight;
 
 		Speed = CharacterMovement->Velocity.Size2D();
 		Angle = FRotationMatrix::MakeFromX(TryGetPawnOwner()->GetActorTransform().InverseTransformVectorNoScale(CharacterMovement->Velocity)).Rotator().Yaw;
@@ -121,7 +124,7 @@ void UMyCharacterAnimInstance::NativeUpdateAnimation(float DeltaTime)
 		MyCharacter->GetCameraView()->SetFieldOfView(CameraCurrentFOV);
 
 		//****** Turn in place
-		TurnInPlace();
+		//TurnInPlace();
 	}
 }
 
@@ -140,44 +143,47 @@ void UMyCharacterAnimInstance::StartCameraShake()
 	MyCharacter->CameraShake = Cast<UMyLegacyCameraShake>(UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->StartCameraShake(UMyLegacyCameraShake::StaticClass()));
 }
 
-void UMyCharacterAnimInstance::TurnInPlace()
-{
-	if (MyCharacter == nullptr) return;
-	if (GroundSpeed > 0)
-	{
-		RootYawOffset = 0;
-		CharacterYaw = MyCharacter->GetActorRotation().Yaw;
-		CharacterYawLastFrame = CharacterYaw;
-		RotationCurve = 0.f;
-		RotationCurveLastFrame = 0.f;
-	}
-	else
-	{
-		CharacterYawLastFrame = CharacterYaw;
-		CharacterYaw = MyCharacter->GetActorRotation().Yaw;
-		const float YawDelta{ CharacterYaw - CharacterYawLastFrame };
-		RootYawOffset = UKismetMathLibrary::NormalizeAxis(RootYawOffset - YawDelta);
-		const float Turning{ GetCurveValue(TEXT("Turning")) };
-		if (Turning > 0)
-		{
-			RotationCurveLastFrame = RotationCurve;
-			RotationCurve = GetCurveValue(TEXT("Rotation"));
-			const float RootDeltaRotation{ RotationCurve - RotationCurveLastFrame };
 
-			// RootYawOffset > 0 -> Turning Left. RootYawOffset < 0 -> Turning Right 
-			RootYawOffset > 0 ? RootYawOffset -= RootDeltaRotation : RootYawOffset += RootDeltaRotation;
-			const float ABSRootYawOffset{ FMath::Abs(RootYawOffset) };
+	   /*	turn in place  */
 
-			if (ABSRootYawOffset > 90.f)
-			{
-				const float YawExcess{ ABSRootYawOffset - 90.f };
-				RootYawOffset > 0 ? RootYawOffset -= YawExcess : RootYawOffset += YawExcess;
-			}
-			else
-			{
 
-			}
-		}
-	}
-}
-
+//void UMyCharacterAnimInstance::TurnInPlace()
+//{
+//	if (MyCharacter == nullptr) return;
+//	if (GroundSpeed > 0)
+//	{
+//		RootYawOffset = 0;
+//		CharacterYaw = MyCharacter->GetActorRotation().Yaw;
+//		CharacterYawLastFrame = CharacterYaw;
+//		RotationCurve = 0.f;
+//		RotationCurveLastFrame = 0.f;
+//	}
+//	else
+//	{
+//		CharacterYawLastFrame = CharacterYaw;
+//		CharacterYaw = MyCharacter->GetActorRotation().Yaw;
+//		const float YawDelta{ CharacterYaw - CharacterYawLastFrame };
+//		RootYawOffset = UKismetMathLibrary::NormalizeAxis(RootYawOffset - YawDelta);
+//		const float Turning{ GetCurveValue(TEXT("Turning")) };
+//		if (Turning > 0)
+//		{
+//			RotationCurveLastFrame = RotationCurve;
+//			RotationCurve = GetCurveValue(TEXT("Rotation"));
+//			const float RootDeltaRotation{ RotationCurve - RotationCurveLastFrame };
+//
+//			// RootYawOffset > 0 -> Turning Left. RootYawOffset < 0 -> Turning Right 
+//			RootYawOffset > 0 ? RootYawOffset -= RootDeltaRotation : RootYawOffset += RootDeltaRotation;
+//			const float ABSRootYawOffset{ FMath::Abs(RootYawOffset) };
+//
+//			if (ABSRootYawOffset > 90.f)
+//			{
+//				const float YawExcess{ ABSRootYawOffset - 90.f };
+//				RootYawOffset > 0 ? RootYawOffset -= YawExcess : RootYawOffset += YawExcess;
+//			}
+//			else
+//			{
+//
+//			}
+//		}
+//	}
+//}			

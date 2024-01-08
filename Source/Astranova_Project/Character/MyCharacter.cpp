@@ -40,7 +40,7 @@ AMyCharacter::AMyCharacter()
 	Beard = CreateDefaultSubobject<UGroomComponent>(FName("Beard"));
 	Beard->SetupAttachment(CharacterHead);
 
-	GetCharacterMovement()->bOrientRotationToMovement = false;
+	//GetCharacterMovement()->bOrientRotationToMovement = false;
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
 
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(FName("CameraBoom"));
@@ -56,6 +56,7 @@ AMyCharacter::AMyCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
+	GetCharacterMovement()->bOrientRotationToMovement = true; 
 
 	GetCharacterMovement()->NavAgentProps.bCanCrouch = true;
 
@@ -73,7 +74,9 @@ AMyCharacter::AMyCharacter()
 
 	MovementValue.X = 0.f;
 
-	 
+	bTurnRight = false;
+	bTurnLeft = false;
+
 
 
 }
@@ -219,15 +222,52 @@ void AMyCharacter::Move(const FInputActionValue& Value)
 	AddMovementInput(MoveRight, MoveDirection.X);
 
 	MovementValue.X = MoveDirection.X;
+	UE_LOG(LogTemp, Warning, TEXT("AxisVal is"));
+
+	//bUseControllerRotationYaw = true;
+}
+
+void AMyCharacter::Stop(const FInputActionValue& Value)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Stopped"));
+	//bUseControllerRotationYaw = false;
 }
 
 void AMyCharacter::Look(const FInputActionValue& Value)
 {
 	FVector2D LookAxis = Value.Get<FVector2D>();
 
-	
+		
 	AddControllerYawInput(LookAxis.X);
 	AddControllerPitchInput(LookAxis.Y);
+
+	FRotator DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(GetControlRotation(), GetActorRotation());
+	float DeltaYaw = DeltaRotation.Yaw;
+
+	if (false)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Yaw:, %f"), DeltaYaw);
+		bTurnRight = true;
+		GetCharacterMovement()->bUseControllerDesiredRotation = true;
+		//GetCharacterMovement()->bOrientRotationToMovement = false;
+	}
+
+	if (DeltaYaw < -90.f)
+	{
+		bTurnLeft = true;
+		GetCharacterMovement()->bUseControllerDesiredRotation = true;
+		//GetCharacterMovement()->bOrientRotationToMovement = false;
+	}
+
+	if (UKismetMathLibrary::NearlyEqual_FloatFloat(DeltaYaw, 0.0f, 0.01f))
+	{
+		GetCharacterMovement()->bUseControllerDesiredRotation = false;
+		//GetCharacterMovement()->bOrientRotationToMovement = false;
+		bTurnRight = false;
+		bTurnLeft = false;
+
+	}
+
 }
 
 
@@ -235,7 +275,7 @@ void AMyCharacter::Look(const FInputActionValue& Value)
 void AMyCharacter::Jump()
 {
 	Super::Jump();
-	DisableInput(PlayerController);
+	//DisableInput(PlayerController);
 
 	if (CharacterState == ECharacterState::ECS_Combat && GetCharacterMovement()->Velocity.Size2D() != 0.f)
 	{
@@ -583,6 +623,7 @@ void AMyCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AMyCharacter::Move);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &AMyCharacter::Stop);
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AMyCharacter::Look);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Ongoing, this, &AMyCharacter::Jump);
 		
@@ -668,7 +709,7 @@ void AMyCharacter::CombatMode()
 	if (!bIsEquipped)
 	{
 		CameraView->SetupAttachment(CameraBoom);
-		GetCharacterMovement()->bOrientRotationToMovement = false;
+		//GetCharacterMovement()->bOrientRotationToMovement = false;
 	}
 
 }

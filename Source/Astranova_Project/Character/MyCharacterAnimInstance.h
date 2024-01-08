@@ -64,7 +64,13 @@ public:
 	bool bCanRun;
 
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
-		bool bIsAttacking;
+	bool bIsAttacking;
+
+	UPROPERTY(BlueprintReadOnly, Category = Movement)
+	bool bTurnLeft;
+
+	UPROPERTY(BlueprintReadOnly, Category = Movement)
+	bool bTurnRight;
 
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
 	ECharacterState CharacterState;
@@ -84,18 +90,18 @@ public:
 
 	/** Turn In Place*/
 
-	float CharacterYaw;
+	//float CharacterYaw;
 
-	float CharacterYawLastFrame;
+	//float CharacterYawLastFrame;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement | TurnInPlace")
-	float RootYawOffset;
+	//UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Movement | TurnInPlace")
+	//float RootYawOffset;
 
-	float RotationCurve;
+	//float RotationCurve;
 
-	float RotationCurveLastFrame;
+	//float RotationCurveLastFrame;
 
 protected:
-	void TurnInPlace();
+	//void TurnInPlace();
 public:
 };
