@@ -74,6 +74,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Attack)
 	bool bIsAttacking;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Attack)
+	float DeltaYaw;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Attack)
+	float DeltaPitch;
 
 	UPROPERTY(BlueprintReadOnly, Category = Montages)
 	bool bTurnRight;

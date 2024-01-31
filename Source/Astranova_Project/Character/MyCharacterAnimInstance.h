@@ -38,7 +38,15 @@ public:
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
 	float GroundSpeed;
 
+	UPROPERTY(BlueprintReadOnly, Category = Movement)
+	float Yaw;
+
+	UPROPERTY(BlueprintReadOnly, Category = Movement)
+	float Pitch;
+
 	FRotator DeltaRotation;
+
+
 
 	UPROPERTY(BlueprintReadOnly, Category = Movement)
 	float MovementOffset;

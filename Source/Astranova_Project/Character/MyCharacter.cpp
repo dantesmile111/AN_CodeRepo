@@ -242,8 +242,8 @@ void AMyCharacter::Look(const FInputActionValue& Value)
 	AddControllerPitchInput(LookAxis.Y);
 
 	FRotator DeltaRotation = UKismetMathLibrary::NormalizedDeltaRotator(GetControlRotation(), GetActorRotation());
-	float DeltaYaw = DeltaRotation.Yaw;
-
+	DeltaYaw = DeltaRotation.Yaw;
+	DeltaPitch = GetBaseAimRotation().Pitch;
 	if (false)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Yaw:, %f"), DeltaYaw);

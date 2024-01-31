@@ -45,11 +45,13 @@ void UMyCharacterAnimInstance::NativeUpdateAnimation(float DeltaTime)
 	{
 		GroundSpeed = UKismetMathLibrary::VSizeXY(CharacterMovement->Velocity);
 		isFalling = CharacterMovement->IsFalling();
-		CharacterState = MyCharacter->GetCharacterState();
+		//CharacterState = MyCharacter->GetCharacterState();
 		ActionState = MyCharacter->GetActionState();
 		bIsCrouched = MyCharacter->bIsCrouched;
 		bIsEquipped = MyCharacter->bIsEquipped;
 		bIsAttacking = MyCharacter->bIsAttacking;
+		Yaw = MyCharacter->DeltaYaw;
+		Pitch = MyCharacter->DeltaPitch;
 		bTurnLeft = MyCharacter->bTurnLeft;
 		bTurnRight = MyCharacter->bTurnRight;
 
