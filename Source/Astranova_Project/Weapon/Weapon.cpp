@@ -4,7 +4,7 @@
 #include "Weapon.h"
 #include "Components/SphereComponent.h"
 #include "Components/BoxComponent.h"
-#include "Kismet/GamePlayStatics.h"
+#include "Kismet/GameplayStatics.h"
 #include "Components/SphereComponent.h"
 #include "Astranova_Project/Character/MyCharacter.h"
 #include  "Astranova_Project\Enemy\Enemy.h"

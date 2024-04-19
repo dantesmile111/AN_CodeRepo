@@ -29,6 +29,9 @@ public:
 	void CombatMode();
 
 	UFUNCTION(BlueprintCallable)
+	void AfterEquippingSword();
+
+	UFUNCTION(BlueprintCallable)
 	void GetHit_Implementation(const FVector& ImpactPoint, AActor* Hitter);
 
 	void PlayHitReactMontage(const FName& SectionName);

@@ -1,0 +1,26 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "QR Code Generator",
+	"Description": "📲 Generates QR code as Texture2D which you can scan using your Phone.",
+	"Category": "YetiTech Studios",
+	"CreatedBy": "YetiTech Studios",
+	"CreatedByURL": "https://www.yetitechstudios.com/",
+	"DocsURL": "https://docs.yetitechstudios.com/kb/qr-code-generator/",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/0011f9be272e478598f14e632b0ff996",
+	"SupportURL": "https://discord.gg/qgYecZmySW",
+	"EngineVersion": "5.3.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "OperatingSystemQRCode",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64"
+			]
+		}
+	]
+}

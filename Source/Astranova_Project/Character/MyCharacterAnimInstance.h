@@ -23,7 +23,7 @@ public:
 
 	void StartCameraShake();
 
-	UPROPERTY(BlueprintReadOnly, Category = Movement)
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = Movement)
 	class AMyCharacter* MyCharacter;
 
 
@@ -108,7 +108,14 @@ public:
 	//float RotationCurve;
 
 	//float RotationCurveLastFrame;
+	FRotator CharacterRotationLastFrame;
+	FRotator CharacterRotation;
 
+	UPROPERTY(BlueprintReadOnly, Category = Movement)
+	float Lean;
+
+	float MaxWalkingSpeed = 400.f;
+	float MaxRunningSpeed = 600.f;
 protected:
 	//void TurnInPlace();
 public:

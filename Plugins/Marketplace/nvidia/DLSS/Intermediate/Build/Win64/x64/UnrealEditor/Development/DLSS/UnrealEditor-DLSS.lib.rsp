@@ -1,0 +1,12 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UnrealEditor-DLSS.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h.obj"
+"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\DLSS\Intermediate\Build\Win64\x64\UnrealEditor\Development\DLSS\Module.DLSS.cpp.obj"
+"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\DLSS\Intermediate\Build\Win64\x64\UnrealEditor\Development\DLSS\Default.rc2.res"
+/OUT:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\DLSS\Intermediate\Build\Win64\x64\UnrealEditor\Development\DLSS\UnrealEditor-DLSS.lib"

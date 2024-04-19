@@ -7,7 +7,7 @@
 #include "Astranova_Project/Weapon/Weapon.h"
 #include "Components/BoxComponent.h"
 #include "Astranova_Project/Component/AttributeComponent.h"
-#include "Kismet/GamePlayStatics.h"
+#include "Kismet/GameplayStatics.h"
 #include "NiagaraFunctionLibrary.h"
 
 ABaseCharacter::ABaseCharacter()

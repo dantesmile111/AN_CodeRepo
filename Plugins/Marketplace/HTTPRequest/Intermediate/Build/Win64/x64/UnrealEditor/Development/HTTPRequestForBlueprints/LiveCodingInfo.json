@@ -1,0 +1,11 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.HTTPRequestForBlueprints.cpp.obj": [
+			"HTTPRequestClient.gen.cpp.obj",
+			"HTTPRequestForBlueprints.init.gen.cpp.obj",
+			"HTTPRequestClient.cpp.obj",
+			"HTTPRequestForBlueprints.cpp.obj"
+		]
+	}
+}
