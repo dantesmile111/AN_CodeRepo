@@ -35,9 +35,9 @@
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
 /NATVIS:"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\RenderCore\RenderCore.natvis"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h.obj"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISShaders\Module.NISShaders.cpp.obj"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISShaders\Default.rc2.res"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h.obj"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISShaders\Module.NISShaders.cpp.obj"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISShaders\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\RHI\UnrealEditor-RHI.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Projects\UnrealEditor-Projects.lib"
@@ -69,7 +69,7 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
-/OUT:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Binaries\Win64\UnrealEditor-NISShaders.dll"
-/IMPLIB:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISShaders\UnrealEditor-NISShaders.sup.lib"
-/PDB:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Binaries\Win64\UnrealEditor-NISShaders.pdb"
+/OUT:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Binaries\Win64\UnrealEditor-NISShaders.dll"
+/IMPLIB:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISShaders\UnrealEditor-NISShaders.sup.lib"
+/PDB:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Binaries\Win64\UnrealEditor-NISShaders.pdb"
 /ignore:4078

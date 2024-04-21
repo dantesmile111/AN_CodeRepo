@@ -1,11 +1,11 @@
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISCore\Module.NISCore.cpp"
-/FI"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h"
-/FI"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISCore\Definitions.NISCore.h"
-/Yu"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h"
-/Fp"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h.pch"
-/Fo"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISCore\Module.NISCore.cpp.obj"
-/sourceDependencies "C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISCore\Module.NISCore.cpp.dep.json"
-@"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISCore\NISCore.Shared.rsp"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISCore\Module.NISCore.cpp"
+/FI"K:\ProjectFiles\Repository\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h"
+/FI"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISCore\Definitions.NISCore.h"
+/Yu"K:\ProjectFiles\Repository\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h"
+/Fp"K:\ProjectFiles\Repository\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h.pch"
+/Fo"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISCore\Module.NISCore.cpp.obj"
+/sourceDependencies "K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISCore\Module.NISCore.cpp.dep.json"
+@"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\NIS\Intermediate\Build\Win64\x64\UnrealEditor\Development\NISCore\NISCore.Shared.rsp"
 /Zc:inline
 /nologo
 /Oi

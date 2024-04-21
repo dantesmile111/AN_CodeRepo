@@ -34,9 +34,9 @@
 /NODEFAULTLIB:"LIBCD"
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h.obj"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\Module.HTTPRequestForBlueprints.cpp.obj"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\Default.rc2.res"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h.obj"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\Module.HTTPRequestForBlueprints.cpp.obj"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Slate\UnrealEditor-Slate.lib"
@@ -71,7 +71,7 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
-/OUT:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Binaries\Win64\UnrealEditor-HTTPRequestForBlueprints.dll"
-/IMPLIB:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\UnrealEditor-HTTPRequestForBlueprints.sup.lib"
-/PDB:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Binaries\Win64\UnrealEditor-HTTPRequestForBlueprints.pdb"
+/OUT:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Binaries\Win64\UnrealEditor-HTTPRequestForBlueprints.dll"
+/IMPLIB:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\UnrealEditor-HTTPRequestForBlueprints.sup.lib"
+/PDB:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Binaries\Win64\UnrealEditor-HTTPRequestForBlueprints.pdb"
 /ignore:4078

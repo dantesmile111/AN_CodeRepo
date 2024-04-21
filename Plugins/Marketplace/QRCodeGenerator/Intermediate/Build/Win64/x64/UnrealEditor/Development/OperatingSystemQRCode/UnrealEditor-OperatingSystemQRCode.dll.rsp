@@ -34,9 +34,9 @@
 /NODEFAULTLIB:"LIBCD"
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h.obj"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\QRCodeGenerator\Intermediate\Build\Win64\x64\UnrealEditor\Development\OperatingSystemQRCode\Module.OperatingSystemQRCode.cpp.obj"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\QRCodeGenerator\Intermediate\Build\Win64\x64\UnrealEditor\Development\OperatingSystemQRCode\Default.rc2.res"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h.obj"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\QRCodeGenerator\Intermediate\Build\Win64\x64\UnrealEditor\Development\OperatingSystemQRCode\Module.OperatingSystemQRCode.cpp.obj"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\QRCodeGenerator\Intermediate\Build\Win64\x64\UnrealEditor\Development\OperatingSystemQRCode\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
@@ -65,7 +65,7 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
-/OUT:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\QRCodeGenerator\Binaries\Win64\UnrealEditor-OperatingSystemQRCode.dll"
-/IMPLIB:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\QRCodeGenerator\Intermediate\Build\Win64\x64\UnrealEditor\Development\OperatingSystemQRCode\UnrealEditor-OperatingSystemQRCode.sup.lib"
-/PDB:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\QRCodeGenerator\Binaries\Win64\UnrealEditor-OperatingSystemQRCode.pdb"
+/OUT:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\QRCodeGenerator\Binaries\Win64\UnrealEditor-OperatingSystemQRCode.dll"
+/IMPLIB:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\QRCodeGenerator\Intermediate\Build\Win64\x64\UnrealEditor\Development\OperatingSystemQRCode\UnrealEditor-OperatingSystemQRCode.sup.lib"
+/PDB:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\QRCodeGenerator\Binaries\Win64\UnrealEditor-OperatingSystemQRCode.pdb"
 /ignore:4078

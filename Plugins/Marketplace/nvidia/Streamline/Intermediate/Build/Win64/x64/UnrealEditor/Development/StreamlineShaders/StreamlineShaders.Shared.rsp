@@ -1,6 +1,6 @@
 /I "."
 /I "Runtime\Renderer\Private"
-/I "C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Source\StreamlineShaders\Private"
+/I "K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Source\StreamlineShaders\Private"
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\Engine\UHT"
 /I "..\Shaders\Shared"
 /I "Runtime\Engine\Classes"
@@ -276,8 +276,8 @@
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\WidgetRegistration\UHT"
 /I "Developer\WidgetRegistration\Public"
 /I "Runtime\Windows"
-/I "C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Source"
-/I "C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Source\StreamlineShaders\Public"
+/I "K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Source"
+/I "K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Source\StreamlineShaders\Public"
 /external:W0
 /external:I "ThirdParty\mimalloc\include"
 /external:I "ThirdParty\LibTiff\Source\Win64"

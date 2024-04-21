@@ -35,9 +35,9 @@
 /NODEFAULTLIB:"LIBCPD"
 /FUNCTIONPADMIN:6
 /NATVIS:"..\Intermediate\Build\Win64\x64\UnrealEditor\Development\RenderCore\RenderCore.natvis"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp17.InclOrderUnreal5_0.h.obj"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Intermediate\Build\Win64\x64\UnrealEditor\Development\StreamlineRHI\Module.StreamlineRHI.cpp.obj"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Intermediate\Build\Win64\x64\UnrealEditor\Development\StreamlineRHI\Default.rc2.res"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\UnrealEd\SharedPCH.UnrealEd.Cpp17.InclOrderUnreal5_0.h.obj"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Intermediate\Build\Win64\x64\UnrealEditor\Development\StreamlineRHI\Module.StreamlineRHI.cpp.obj"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Intermediate\Build\Win64\x64\UnrealEditor\Development\StreamlineRHI\Default.rc2.res"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Core\UnrealEditor-Core.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\CoreUObject\UnrealEditor-CoreUObject.lib"
 "..\Intermediate\Build\Win64\x64\UnrealEditor\Development\Engine\UnrealEditor-Engine.lib"
@@ -70,7 +70,7 @@
 "synchronization.lib"
 "dwmapi.lib"
 "imm32.lib"
-/OUT:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Binaries\Win64\UnrealEditor-StreamlineRHI.dll"
-/IMPLIB:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Intermediate\Build\Win64\x64\UnrealEditor\Development\StreamlineRHI\UnrealEditor-StreamlineRHI.sup.lib"
-/PDB:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Binaries\Win64\UnrealEditor-StreamlineRHI.pdb"
+/OUT:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Binaries\Win64\UnrealEditor-StreamlineRHI.dll"
+/IMPLIB:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Intermediate\Build\Win64\x64\UnrealEditor\Development\StreamlineRHI\UnrealEditor-StreamlineRHI.sup.lib"
+/PDB:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\nvidia\Streamline\Binaries\Win64\UnrealEditor-StreamlineRHI.pdb"
 /ignore:4078

@@ -6,7 +6,7 @@
 /NAME:"UnrealEditor-HTTPRequestForBlueprints.dll"
 /IGNORE:4221
 /NODEFAULTLIB
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h.obj"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\Module.HTTPRequestForBlueprints.cpp.obj"
-"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\Default.rc2.res"
-/OUT:"C:\Users\aadij\Onedrive\Desktop\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\UnrealEditor-HTTPRequestForBlueprints.lib"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Intermediate\Build\Win64\x64\Astranova_ProjectEditor\Development\Engine\SharedPCH.Engine.Cpp17.InclOrderUnreal5_0.h.obj"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\Module.HTTPRequestForBlueprints.cpp.obj"
+"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\Default.rc2.res"
+/OUT:"K:\ProjectFiles\Repository\AN_CodeRepo\Plugins\Marketplace\HTTPRequest\Intermediate\Build\Win64\x64\UnrealEditor\Development\HTTPRequestForBlueprints\UnrealEditor-HTTPRequestForBlueprints.lib"
