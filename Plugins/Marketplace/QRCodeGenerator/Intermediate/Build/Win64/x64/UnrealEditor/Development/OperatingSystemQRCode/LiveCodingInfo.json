@@ -1,0 +1,13 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.OperatingSystemQRCode.cpp.obj": [
+			"OperatingSystemQRCode.init.gen.cpp.obj",
+			"OperatingSystemQrCodeGenerator.gen.cpp.obj",
+			"OperatingSystemQrCodeGenerator.cpp.obj",
+			"OperatingSystemQRCodeModule.cpp.obj",
+			"qrcodegen.cpp.obj",
+			"QrCodeGeneratorDemo.cpp.obj"
+		]
+	}
+}

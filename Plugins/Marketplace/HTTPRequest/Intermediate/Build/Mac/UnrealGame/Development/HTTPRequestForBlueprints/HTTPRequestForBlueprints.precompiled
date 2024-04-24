@@ -1,0 +1,8 @@
+{
+	"OutputFiles": [
+		"../../../arm64/UnrealGame/Development/HTTPRequestForBlueprints/Module.HTTPRequestForBlueprints.cpp.o",
+		"../../../arm64/UnrealGame/Development/HTTPRequestForBlueprints/Module.HTTPRequestForBlueprints.cpp.o",
+		"../../../x64/UnrealGame/Development/HTTPRequestForBlueprints/Module.HTTPRequestForBlueprints.cpp.o",
+		"../../../x64/UnrealGame/Development/HTTPRequestForBlueprints/Module.HTTPRequestForBlueprints.cpp.o"
+	]
+}

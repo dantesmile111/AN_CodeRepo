@@ -2,7 +2,7 @@
 
 
 #include "Enemy.h"
-#include "GameFrameWork/CharacterMovementComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "AIController.h"
 #include "Perception/PawnSensingComponent.h"
 #include "Astranova_Project/Component/AttributeComponent.h"

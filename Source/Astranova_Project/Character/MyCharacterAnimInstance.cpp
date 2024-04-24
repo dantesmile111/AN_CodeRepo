@@ -57,7 +57,18 @@ void UMyCharacterAnimInstance::NativeUpdateAnimation(float DeltaTime)
 
 		Speed = CharacterMovement->Velocity.Size2D();
 		Angle = FRotationMatrix::MakeFromX(TryGetPawnOwner()->GetActorTransform().InverseTransformVectorNoScale(CharacterMovement->Velocity)).Rotator().Yaw;
-
+		
+		
+		
+		CharacterRotationLastFrame = CharacterRotation;
+		CharacterRotation = MyCharacter->GetActorRotation();
+		const FRotator Delta = UKismetMathLibrary::NormalizedDeltaRotator(CharacterRotation, CharacterRotationLastFrame);
+		const float Target = Delta.Yaw / DeltaTime;
+		const float Interp = FMath::FInterpTo(Lean, Target, DeltaTime, 1.5f);
+		Lean = FMath::Clamp(Interp, -90.f, 90.f);
+		
+		
+		
 		if (bIsCrouched)
 		{
 			MyCharacter->GetCharacterMovement()->MaxWalkSpeed = 200.f;
@@ -66,11 +77,29 @@ void UMyCharacterAnimInstance::NativeUpdateAnimation(float DeltaTime)
 		bCanRun = MyCharacter->GetbCanRun(); /***/
 		if (bCanRun)
 		{
-			CharacterMovement->MaxWalkSpeed = 600.f;
+			CharacterMovement->MaxWalkSpeed = MaxRunningSpeed;
+			//float RunningSpeed = CharacterMovement->Velocity.Length() + 5.f;
+			//if (RunningSpeed <= MaxRunningSpeed)
+			//{
+			//	CharacterMovement->MaxWalkSpeed = RunningSpeed;
+			//}
+			//else
+			//{
+			//	CharacterMovement->MaxWalkSpeed = MaxRunningSpeed;
+			//}
 		}
 		else
 		{
-			CharacterMovement->MaxWalkSpeed = 300.f;
+			CharacterMovement->MaxWalkSpeed = MaxWalkingSpeed;
+			//float WalkSpeed = CharacterMovement->Velocity.Length() + 5.f;
+			//if (WalkSpeed <= MaxWalkingSpeed)
+			//{
+			//	CharacterMovement->MaxWalkSpeed = WalkSpeed;
+			//}
+			//else
+			//{
+			//	CharacterMovement->MaxWalkSpeed = MaxWalkingSpeed;
+			//}
 		}
 
 		//if (CharacterState == ECharacterState::ECS_Equipped/* || bIsCrouched*/)

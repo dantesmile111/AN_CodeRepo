@@ -374,6 +374,14 @@ void AMyCharacter::Dodge()
 void AMyCharacter::EKey()
 {
 	AWeapon* OverlappedWeapon = Cast<AWeapon>(OverlappingItem);
+	AfterEquippingSword();
+
+
+}
+
+void AMyCharacter::AfterEquippingSword()
+{
+	AWeapon* OverlappedWeapon = Cast<AWeapon>(OverlappingItem);
 	if (OverlappedWeapon)
 	{
 		FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
@@ -388,10 +396,7 @@ void AMyCharacter::EKey()
 		EquippedWeapon = OverlappedWeapon;
 
 		CombatMode();
-
-		
 	}
-
 }
 
 

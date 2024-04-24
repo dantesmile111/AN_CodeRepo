@@ -35,6 +35,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Weapon Properties")
 	float Damage;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	class UBoxComponent* WeaponBox;
 
 protected:
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
@@ -83,9 +85,6 @@ private:
 	class USphereComponent* SphereComponent;
 
 	void DisableSphereCollsion();
-
-	UPROPERTY(VisibleAnywhere)
-	class UBoxComponent* WeaponBox;
 
 	
 
