@@ -120,6 +120,10 @@
 		{
 			"Name": "PixelStreamingPlayer",
 			"Enabled": true
+		},
+		{
+			"Name": "FMODStudio",
+			"Enabled": true
 		}
 	]
 }
