@@ -1,22 +1,22 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "c:\\users\\aadij\\onedrive\\desktop\\an_coderepo\\plugins\\marketplace\\httprequest\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\httprequestforblueprints\\module.httprequestforblueprints.cpp",
+        "Source": "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\httprequest\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\httprequestforblueprints\\module.httprequestforblueprints.cpp",
         "ProvidedModule": "",
-        "PCH": "c:\\users\\aadij\\onedrive\\desktop\\an_coderepo\\intermediate\\build\\win64\\x64\\astranova_projecteditor\\development\\engine\\sharedpch.engine.cpp17.inclorderunreal5_0.h.pch",
+        "PCH": "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\intermediate\\build\\win64\\x64\\astranova_projecteditor\\development\\engine\\sharedpch.engine.cpp17.inclorderunreal5_0.h.pch",
         "Includes": [
-            "c:\\users\\aadij\\onedrive\\desktop\\an_coderepo\\plugins\\marketplace\\httprequest\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\httprequestforblueprints\\definitions.httprequestforblueprints.h",
-            "c:\\users\\aadij\\onedrive\\desktop\\an_coderepo\\plugins\\marketplace\\httprequest\\intermediate\\build\\win64\\unrealeditor\\inc\\httprequestforblueprints\\uht\\httprequestclient.gen.cpp",
-            "c:\\users\\aadij\\onedrive\\desktop\\an_coderepo\\plugins\\marketplace\\httprequest\\source\\httprequestforblueprints\\public\\httprequestclient.h",
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\httprequest\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\httprequestforblueprints\\definitions.httprequestforblueprints.h",
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\httprequest\\intermediate\\build\\win64\\unrealeditor\\inc\\httprequestforblueprints\\uht\\httprequestclient.gen.cpp",
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\httprequest\\source\\httprequestforblueprints\\public\\httprequestclient.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\online\\http\\public\\httpmodule.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\online\\http\\public\\interfaces\\ihttprequest.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\online\\http\\public\\interfaces\\ihttpbase.h",
             "c:\\program files\\epic games\\ue_5.3\\engine\\source\\runtime\\online\\http\\public\\interfaces\\ihttpresponse.h",
-            "c:\\users\\aadij\\onedrive\\desktop\\an_coderepo\\plugins\\marketplace\\httprequest\\intermediate\\build\\win64\\unrealeditor\\inc\\httprequestforblueprints\\uht\\httprequestclient.generated.h",
-            "c:\\users\\aadij\\onedrive\\desktop\\an_coderepo\\plugins\\marketplace\\httprequest\\intermediate\\build\\win64\\unrealeditor\\inc\\httprequestforblueprints\\uht\\httprequestforblueprints.init.gen.cpp",
-            "c:\\users\\aadij\\onedrive\\desktop\\an_coderepo\\plugins\\marketplace\\httprequest\\source\\httprequestforblueprints\\private\\httprequestclient.cpp",
-            "c:\\users\\aadij\\onedrive\\desktop\\an_coderepo\\plugins\\marketplace\\httprequest\\source\\httprequestforblueprints\\private\\httprequestforblueprints.cpp",
-            "c:\\users\\aadij\\onedrive\\desktop\\an_coderepo\\plugins\\marketplace\\httprequest\\source\\httprequestforblueprints\\public\\httprequestforblueprints.h"
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\httprequest\\intermediate\\build\\win64\\unrealeditor\\inc\\httprequestforblueprints\\uht\\httprequestclient.generated.h",
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\httprequest\\intermediate\\build\\win64\\unrealeditor\\inc\\httprequestforblueprints\\uht\\httprequestforblueprints.init.gen.cpp",
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\httprequest\\source\\httprequestforblueprints\\private\\httprequestclient.cpp",
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\httprequest\\source\\httprequestforblueprints\\private\\httprequestforblueprints.cpp",
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\httprequest\\source\\httprequestforblueprints\\public\\httprequestforblueprints.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

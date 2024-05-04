@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\nvidia\\streamline\\intermediate\\build\\win64\\unrealeditor\\inc\\streamlinerhi\\uht\\streamlinesettings.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\intermediate\\build\\win64\\x64\\astranova_projecteditor\\development\\unrealed\\sharedpch.unrealed.cpp17.inclorderunreal5_0.h.pch",
+        "Includes": [
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\nvidia\\streamline\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\streamlinerhi\\definitions.streamlinerhi.h",
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\nvidia\\streamline\\source\\streamlinerhi\\public\\streamlinesettings.h",
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\nvidia\\streamline\\intermediate\\build\\win64\\unrealeditor\\inc\\streamlinerhi\\uht\\streamlinesettings.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

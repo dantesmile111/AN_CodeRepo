@@ -1,0 +1,13 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\nvidia\\streamline\\intermediate\\build\\win64\\unrealeditor\\inc\\streamlineblueprint\\uht\\streamlineblueprint.init.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\intermediate\\build\\win64\\x64\\astranova_projecteditor\\development\\engine\\sharedpch.engine.cpp17.inclorderunreal5_0.h.pch",
+        "Includes": [
+            "e:\\astranova\\an_demo_2.0\\git\\an_coderepo\\plugins\\marketplace\\nvidia\\streamline\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\streamlineblueprint\\definitions.streamlineblueprint.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
